@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #342C46;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #3B3652;
+  color: #B0B0B0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  height: 100px;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #3B3652;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 100%;
+  left: 50%;
+
+  background-color: #3B3652;
+  margin-right: 50%;
+}
+
+.nav-links a {
+  color: #B0B0B0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  /* necessário para posicionar o ::after */
+
+  background-color: #3B3652;
+}
+
+.nav-links a:hover {
+  color: #cfcece;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #B0B0B0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.sidebar {
+  width: 220px;
+  height: 96.5%;
+  background-color: #3B3652;
+  padding-top: 1rem;
+  color: white;
+  margin: 20px;
+  /*Margem em volta da sidebar*/
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  background-color: #3B3652;
+}
+
+.sidebar nav ul li {
+  margin: 0 0 1.5rem 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #B0B0B0;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: background-color 0.2s ease;
+  background-color: #3B3652;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #45405E;
+  color: #fff;
+}
+
+.sidebar nav ul li a i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  margin-top: 20px;
+  justify-content: space-around;
+  gap: 20px;
+  height: 100vh;
+}
+
+.grid div {
+  margin: 0px 0px 20px 0px;
+}
+
+.container-base {
+  content: '';
+  background-color: #342C46;
+  width: 100%;
+}
+
+.container-1 {
+  content: '';
+  background-color: #45405E;
+  width: 100%;
+  height: 31.5%;
+}
+
+.container-2{
+  background-color: #45405E;
+  height: 65%;
+  width: 100%;
+}
+
+.container-3{
+  background-color: #45405E;
+  width: 100%;
+  height: 31.5%;
+}
+
+.container-lateral {
+  content: '';
+  width: 95%;
+}
