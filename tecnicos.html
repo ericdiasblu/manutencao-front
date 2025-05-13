@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnicos</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecnicos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-          <div class="logo">Manutenção SESI</div>
-          <ul class="nav-links">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#contato">Contato</a></li>
-          </ul>
-        </nav>
-      </header>
-      <div class="grid-2">
-    
-        <div class="sidebar">
-          <nav>
-            <ul>
-              <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
-              <li><a href="chamados.html"><i class="fas fa-phone"></i> Chamados</a></li>
-              <li><a href="#"><i class="fas fa-microchip"></i> Técnicos</a></li>
-              <li><a href="#"><i class="fas fa-toolbox"></i> Equipamentos</a></li>
-            </ul>
-          </nav>
-        </div>
-    
-        <div class="container-base">
-            <div>
-               <h2>Tecnicos</h2>
-               <p>Total 13 tecnicos</p>
-            </div>
-          <div class="container-4">
+  <header>
+    <nav class="navbar">
+      <div class="logo">Manutenção SESI</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+       <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="grid-2">
 
-            <div class="search-filter">
-              <input type="text" id="search" placeholder="Buscar técnico...">
-              <select id="filter"></select>
-            </div>
+    <div class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+          <li><a href="chamados.html"><i class="fas fa-phone"></i> Chamados</a></li>
+          <li><a href="#"><i class="fas fa-microchip"></i> Técnicos</a></li>
+          <li><a href="#"><i class="fas fa-toolbox"></i> Equipamentos</a></li>
+        </ul>
+      </nav>
+    </div>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Nome</th>
-                  <th>Especialidade</th>
-                  <th>Contato</th>
-                  <th>Disponibilidade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>João Silva</td>
-                  <td>Eletricista</td>
-                  <td>(11) 98765-4321</td>
-                  <td>Disponível</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Maria Oliveira</td>
-                  <td>Hidráulica</td>
-                  <td>(21) 91234-5678</td>
-                  <td>Indisponível</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Carlos Santos</td>
-                  <td>Refrigeração</td>
-                  <td>(31) 99876-5432</td>
-                  <td>Disponível</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-    
-        
-    
-    
+    <div class="container-base">
+      <div class="sub-title">
+        <h2>Tecnicos</h2>
+        <p>Total 13 tecnicos</p>
       </div>
+      <div class="container-4">
+
+        <div class="search-filter">
+          <input type="text" id="search" placeholder="Buscar técnico...">
+          <select id="filter"></select>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Especialidade</th>
+              <th>Contato</th>
+              <th>Disponibilidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>João Silva</td>
+              <td>Eletricista</td>
+              <td>(11) 98765-4321</td>
+              <td>Disponível</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Maria Oliveira</td>
+              <td>Hidráulica</td>
+              <td>(21) 91234-5678</td>
+              <td>Indisponível</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Carlos Santos</td>
+              <td>Refrigeração</td>
+              <td>(31) 99876-5432</td>
+              <td>Disponível</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+  </div>
 </body>
+
 </html>
