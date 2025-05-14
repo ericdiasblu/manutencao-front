@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
+<body >
   <header>
     <nav class="navbar">
       <div class="logo">Manutenção SESI</div>
@@ -40,7 +40,7 @@
         <p>Total 13 tecnicos</p>
       </div>
       <div style="align-content: center;">
-         <button>Cadastrar tecnico</button>
+         <button onclick="buscarTecnico()">Cadastrar tecnico</button>
       </div>
      
       </div>
@@ -62,31 +62,8 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>João Silva</td>
-              <td>Eletricista</td>
-              <td>(11) 98765-4321</td>
-              <td>Disponível</td>
-                <td><button class="options"><i class="fas fa-ellipsis-v"></i></button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Maria Oliveira</td>
-              <td>Hidráulica</td>
-              <td>(21) 91234-5678</td>
-              <td>Indisponível</td>
-              <td><button class="options"><i class="fas fa-ellipsis-v"></i></button></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Carlos Santos</td>
-              <td>Refrigeração</td>
-              <td>(31) 99876-5432</td>
-              <td>Disponível</td>
-              <td><button class="options"><i class="fas fa-ellipsis-v"></i></button></td>
-            </tr>
+          <tbody id="table-technicians">
+            
           </tbody>
         </table>
       </div>
@@ -96,6 +73,35 @@
 
 
   </div>
+
+  <script>
+      function buscarTecnico() {
+        fetch('http://localhost:8080/tecnicos')
+        .then(response => response.json())
+        .then(tecnicos => {
+            const tbody = document.getElementById('table-technicians');
+            tbody.innerHTML = '';
+            tecnicos.forEach(tecnico => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${tecnico.id}</td>
+                    <td>${tecnico.nome}</td>
+                    <td>${tecnico.especialidade}</td>
+                    <td>${tecnico.contato}</td>
+                    <td>${tecnico.disponibilidade}</td>
+                    <td><button class="options"><i class="fas fa-ellipsis-v"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao buscar técnicos:', error);
+        });
+    }
+
+    // Executa a função buscarTecnico ao carregar a página
+    window.onload = buscarTecnico;
+  </script>
 </body>
 
 </html>
