@@ -12,9 +12,10 @@ body {
 
 table {
   background-color: #3B3652;
-  width: 100%;
+  width: 97%;
   border-collapse: separate;
   border-spacing: 0 10px;
+  margin: auto;
 }
 
 th {
@@ -42,6 +43,30 @@ button {
 
 }
 
+.bg-img {
+  width: 50%;
+  height: 50%;
+}
+
+.options {
+  padding: 1px;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: #45405E;
+ 
+}
+
+.options img {
+  width: 10px;
+  height: 20px;
+
+}
+.flex {
+  display: flex;
+  justify-content: space-between
+}
+
 .mg-top-75 {
   margin-top: 75px;
 }
@@ -50,6 +75,10 @@ button {
   background-image: url(assets/background-sobre.png);
   background-size: cover;
   background-position: center;
+}
+
+.background-sobre div {
+  background-color: #5c407d00;
 }
 
 .sub-title {
@@ -92,7 +121,8 @@ button {
   align-items: left;
   margin-top: 100px;
   height: 78vh;
-  margin-left: 10%;
+   margin-left: 15%;
+  
 }
 
 .main-content h1 {
@@ -101,6 +131,7 @@ button {
   margin-bottom: 20px;
   text-decoration: underline;
   background-color: #3b365200;
+ 
 }
 
 
