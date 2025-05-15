@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body >
+<body>
   <header>
     <nav class="navbar">
       <div class="logo">Manutenção SESI</div>
       <ul class="nav-links">
         <li><a href="index.html">Início</a></li>
-       <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
@@ -35,14 +35,14 @@
 
     <div class="container-base">
       <div class="flex">
-      <div class="sub-title">
-        <h2>Tecnicos</h2>
-        <p>Total 13 tecnicos</p>
-      </div>
-      <div style="align-content: center;">
-         <button onclick="buscarTecnico()">Cadastrar tecnico</button>
-      </div>
-     
+        <div class="sub-title">
+          <h2>Tecnicos</h2>
+          <p>Total 13 tecnicos</p>
+        </div>
+        <div style="align-content: center;">
+          <button>Cadastrar tecnico</button>
+        </div>
+
       </div>
       <div class="container-4">
 
@@ -63,7 +63,7 @@
             </tr>
           </thead>
           <tbody id="table-technicians">
-            
+
           </tbody>
         </table>
       </div>
@@ -75,32 +75,72 @@
   </div>
 
   <script>
-      function buscarTecnico() {
-        fetch('http://localhost:8080/tecnicos')
+    function buscarTecnico() {
+      fetch('http://localhost:8080/tecnicos')
         .then(response => response.json())
         .then(tecnicos => {
-            const tbody = document.getElementById('table-technicians');
-            tbody.innerHTML = '';
-            tecnicos.forEach(tecnico => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+          const tbody = document.getElementById('table-technicians');
+          tbody.innerHTML = '';
+          tecnicos.forEach(tecnico => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
                     <td>${tecnico.id}</td>
-                    <td>${tecnico.nome}</td>
-                    <td>${tecnico.especialidade}</td>
-                    <td>${tecnico.contato}</td>
-                    <td>${tecnico.disponibilidade}</td>
-                    <td><button class="options"><i class="fas fa-ellipsis-v"></i></button></td>
+    <td>${tecnico.nome}</td>
+    <td>${tecnico.especialidade}</td>
+    <td>${tecnico.contato}</td>
+    <td>${tecnico.disponibilidade}</td>
+    <td>
+      <div class="dropdown">
+        <button class="options" onclick="toggleDropdown(event)">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#" onclick="visualizarTecnico(${tecnico.id})">Visualizar técnico</a>
+          <a href="#" onclick="editarTecnico(${tecnico.id})">Editar</a>
+          <a href="#" onclick="deletarTecnico(${tecnico.id})">Deletar</a>
+        </div>
+      </div>
+    </td>
                 `;
-                tbody.appendChild(tr);
-            });
+            tbody.appendChild(tr);
+          });
         })
         .catch(error => {
-            console.error('Erro ao buscar técnicos:', error);
+          console.error('Erro ao buscar técnicos:', error);
         });
     }
 
     // Executa a função buscarTecnico ao carregar a página
     window.onload = buscarTecnico;
+
+    // ...existing code...
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      const dropdown = event.target.closest('.dropdown');
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== dropdown) d.classList.remove('show');
+      });
+      dropdown.classList.toggle('show');
+    }
+
+    window.onclick = function () {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+    }
+
+    // Funções de exemplo para as ações
+    function visualizarTecnico(id) {
+      alert('Visualizar técnico: ' + id);
+    }
+    function editarTecnico(id) {
+      alert('Editar técnico: ' + id);
+    }
+    function deletarTecnico(id) {
+      if (confirm('Deseja deletar o técnico ' + id + '?')) {
+        alert('Técnico deletado: ' + id);
+        // Aqui você pode chamar a API para deletar e atualizar a tabela
+      }
+    }
+    // ...existing code...
   </script>
 </body>
 
