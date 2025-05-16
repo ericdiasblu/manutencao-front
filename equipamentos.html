@@ -177,15 +177,15 @@
                 fetch(`http://localhost:8080/equipamento/${id}`, {
                     method: 'DELETE'
                 })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Equipamento deletado com sucesso!');
-                        buscarEquipamento(); 
-                    } else {
-                        alert('Erro ao deletar equipamento!');
-                    }
-                })
-                .catch(() => alert('Erro ao deletar equipamento!'));
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Equipamento deletado com sucesso!');
+                            buscarEquipamento();
+                        } else {
+                            alert('Erro ao deletar equipamento!');
+                        }
+                    })
+                    .catch(() => alert('Erro ao deletar equipamento!'));
             }
         }
 
@@ -249,11 +249,10 @@
                 .catch(() => alert('Erro ao cadastrar equipamento!'));
         };
 
-        // ...existing code...
+
 
     </script>
 
 </body>
 
-</html>// Atualiza a quantidade de equipamentos
-          // ...existing code...
+</html>
