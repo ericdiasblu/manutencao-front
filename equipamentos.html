@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipamentos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body onload="buscarEquipamento()">
+    <header>
+        <nav class="navbar">
+            <div class="logo">Manutenção SESI</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="grid-2">
+
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="chamados.html"><i class="fas fa-phone"></i> Chamados</a></li>
+                    <li><a href="tecnicos.html"><i class="fas fa-microchip"></i> Técnicos</a></li>
+                    <li><a href="equipamentos.html"><i class="fas fa-toolbox"></i> Equipamentos</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="container-base">
+            <div class="flex">
+                <div class="sub-title">
+                    <h2>Equipamentos</h2>
+                    <p>Total {quantidade} equipamentos</p>
+                </div>
+                <div style="align-content: center;">
+                    <button>Cadastrar Equipamento</button>
+                </div>
+
+            </div>
+            <div class="container-4">
+
+                <div class="search-filter">
+                    <input type="text" id="search" placeholder="Buscar equipamentos...">
+                    <select id="filter"></select>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Localização</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+        function buscarEquipamento() {
+            fetch('http://localhost:8080/equipamento')
+                .then(response => response.json())
+                .then(equipamentos => {
+                    const tbody = document.getElementById('table-body');
+                    tbody.innerHTML = '';
+                    equipamentos.forEach(equipamento => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                    <td>${equipamento.id}</td>
+    <td>${equipamento.nome}</td>
+    <td>${equipamento.descricao}</td>
+    <td>${equipamento.localizacao}</td>
+    <td>${equipamento.status}</td>
+    <td>
+      <div class="dropdown">
+        <button class="options" onclick="toggleDropdown(event)">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#" onclick="visualizarEquipamento(${equipamento.id})">Visualizar</a>
+          <a href="#" onclick="editarEquipamento(${equipamento.id})">Editar</a>
+          <a href="#" onclick="deletarEquipamento(${equipamento.id})">Deletar</a>
+        </div>
+      </div>
+    </td>
+                `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar equipamentos:', error);
+                });
+        }
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = event.target.closest('.dropdown');
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) d.classList.remove('show');
+            });
+            dropdown.classList.toggle('show');
+        }
+
+        window.onclick = function () {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+        }
+
+        // Funções de exemplo para as ações de equipamento
+        function visualizarEquipamento(id) {
+            alert('Visualizar equipamento: ' + id);
+        }
+        function editarEquipamento(id) {
+            alert('Editar equipamento: ' + id);
+        }
+        function deletarEquipamento(id) {
+            if (confirm('Deseja deletar o equipamento ' + id + '?')) {
+                alert('Equipamento deletado: ' + id);
+                // Aqui você pode chamar a API para deletar e atualizar a tabela
+            }
+        }
+
+
+        document.querySelector('button').onclick = function () {
+            document.getElementById('modal-cadastrar').style.display = 'block';
+        };
+
+        function fecharModal() {
+            document.getElementById('modal-cadastrar').style.display = 'none';
+        }
+
+        // Fecha o modal ao clicar fora dele
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('modal-cadastrar')) {
+                fecharModal();
+            }
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+        }
+
+        function cadastrar() {
+            
+        }
+
+    </script>
+
+
+    <div id="modal-cadastrar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Cadastrar Equipamento</h2>
+            <form id="form-cadastrar">
+                <label>Nome:</label>
+                <input type="text" name="nome" required>
+                <label>Descrição:</label>
+                <input type="text" name="descricao" required>
+                <label>Localização:</label>
+                <input type="text" name="localizacao" required>
+                <label>Status:</label>
+                <input type="text" name="status" required>
+                <button onsubmit="cadastrar()" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

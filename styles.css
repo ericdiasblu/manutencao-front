@@ -43,6 +43,106 @@ button {
 
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background: #23272a;
+  margin: 7% auto;
+  padding: 32px 32px 24px 32px;
+  border-radius: 16px;
+  width: 380px;
+  position: relative;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #b0b0b0;
+  cursor: pointer;
+  transition: color 0.2s;
+  background: none;
+}
+
+.close:hover {
+  color: #fff;
+}
+
+#form-cadastrar {
+  background-color: #f7a30800;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+}
+
+#form-cadastrar label {
+  background-color: #f7a30800;
+  font-size: 1rem;
+  color: #bdbdbd;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+#form-cadastrar input[type="text"] {
+  background: #2c2f33;
+  border: 1px solid #444857;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+#form-cadastrar input[type="text"]:focus {
+  border: 1.5px solid #8ab4f8;
+  background: #23272a;
+}
+
+#form-cadastrar button[type="submit"] {
+  background: linear-gradient(90deg, #8ab4f8 0%, #5c407d 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.08rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+#form-cadastrar button[type="submit"]:hover {
+  background: linear-gradient(90deg, #5c407d 0%, #8ab4f8 100%);
+  color: #fff;
+}
+
+.modal-content h2 {
+  background-color: #f7a30800;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
 /* Adicione ao seu styles.css */
 .dropdown {
   position: relative;
