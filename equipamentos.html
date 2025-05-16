@@ -74,6 +74,25 @@
 
     </div>
 
+
+    <div id="modal-cadastrar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Cadastrar Equipamento</h2>
+            <form id="form-cadastrar">
+                <label>Nome:</label>
+                <input type="text" name="nome" required>
+                <label>Descrição:</label>
+                <input type="text" name="descricao" required>
+                <label>Localização:</label>
+                <input type="text" name="localizacao" required>
+                <label>Status:</label>
+                <input type="text" name="status" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+    
     <script>
         function buscarEquipamento() {
             fetch('http://localhost:8080/equipamento')
@@ -154,30 +173,42 @@
             document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
         }
 
-        function cadastrar() {
-            
-        }
+        // ...existing code...
+
+        document.getElementById('form-cadastrar').onsubmit = function (event) {
+            event.preventDefault(); // Impede o reload da página
+
+            const form = event.target;
+            const equipamento = {
+                nome: form.nome.value,
+                descricao: form.descricao.value,
+                localizacao: form.localizacao.value,
+                status: form.status.value
+            };
+
+            fetch('http://localhost:8080/equipamento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(equipamento)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        fecharModal();
+                        buscarEquipamento(); // Atualiza a tabela
+                        form.reset(); // Limpa o formulário
+                    } else {
+                        alert('Erro ao cadastrar equipamento!');
+                    }
+                })
+                .catch(() => alert('Erro ao cadastrar equipamento!'));
+        };
+
+        // ...existing code...
 
     </script>
 
-
-    <div id="modal-cadastrar" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Cadastrar Equipamento</h2>
-            <form id="form-cadastrar">
-                <label>Nome:</label>
-                <input type="text" name="nome" required>
-                <label>Descrição:</label>
-                <input type="text" name="descricao" required>
-                <label>Localização:</label>
-                <input type="text" name="localizacao" required>
-                <label>Status:</label>
-                <input type="text" name="status" required>
-                <button onsubmit="cadastrar()" type="submit">Cadastrar</button>
-            </form>
-        </div>
-    </div>
 </body>
 
 </html>

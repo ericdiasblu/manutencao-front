@@ -111,12 +111,13 @@ button {
 }
 
 #form-cadastrar input[type="text"]:focus {
-  border: 1.5px solid #8ab4f8;
+  border: 1.5px solid #654788;
+  box-shadow: inset 0 0 5px rgba(101, 71, 136, 0.5);
   background: #23272a;
 }
 
 #form-cadastrar button[type="submit"] {
-  background: linear-gradient(90deg, #8ab4f8 0%, #5c407d 100%);
+  background: linear-gradient(180deg, #444857 0%, #5c407d 100%);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -125,11 +126,11 @@ button {
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
-  transition: background 0.2s, color 0.2s;
+  transition: 0.8s, color 0.2s;
 }
 
 #form-cadastrar button[type="submit"]:hover {
-  background: linear-gradient(90deg, #5c407d 0%, #8ab4f8 100%);
+  background: linear-gradient(180deg, #464a58 0%, #6f4d96 100%);
   color: #fff;
 }
 
