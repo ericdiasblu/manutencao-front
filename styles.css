@@ -43,6 +43,10 @@ button {
 
 }
 
+strong {
+  color: #976ec7;
+}
+
 .modal {
   display: none;
   position: fixed;
