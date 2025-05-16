@@ -92,8 +92,11 @@
             </form>
         </div>
     </div>
-    
+
     <script>
+
+
+
         function buscarEquipamento() {
             fetch('http://localhost:8080/equipamento')
                 .then(response => response.json())
@@ -150,9 +153,19 @@
             alert('Editar equipamento: ' + id);
         }
         function deletarEquipamento(id) {
-            if (confirm('Deseja deletar o equipamento ' + id + '?')) {
-                alert('Equipamento deletado: ' + id);
-                // Aqui você pode chamar a API para deletar e atualizar a tabela
+            if (confirm('Tem certeza que deseja deletar este equipamento?')) {
+                fetch(`http://localhost:8080/equipamento/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Equipamento deletado com sucesso!');
+                        buscarEquipamento();
+                    } else {
+                        alert('Erro ao deletar equipamento!');
+                    }
+                })
+                .catch(() => alert('Erro ao deletar equipamento!'));
             }
         }
 
