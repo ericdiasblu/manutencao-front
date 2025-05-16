@@ -78,7 +78,7 @@
     <div id="modal-cadastrar" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
-            <h2>Cadastrar Equipamento</h2>
+            <h2 id="titulo-modal">Equipamento</h2>
             <form id="form-cadastrar">
                 <label>Nome:</label>
                 <input type="text" name="nome" required>
@@ -147,7 +147,23 @@
 
         // Funções de exemplo para as ações de equipamento
         function visualizarEquipamento(id) {
-            alert('Visualizar equipamento: ' + id);
+            fetch(`http://localhost:8080/equipamento/${id}`)
+                .then(response => response.json())
+                .then(equipamento => {
+                    const modal = document.getElementById('modal-cadastrar');
+                    const form = document.getElementById('form-cadastrar');
+                    const tituloModal = document.getElementById('titulo-modal');
+                    tituloModal.innerText = 'Visualizar Equipamento';
+                    modal.style.display = 'block';
+                    form.nome.value = equipamento.nome;
+                    form.descricao.value = equipamento.descricao;
+                    form.localizacao.value = equipamento.localizacao;
+                    form.status.value = equipamento.status;
+                    // Desabilita todos os inputs
+                    Array.from(form.elements).forEach(el => el.disabled = true);
+                    // Esconde o botão de submit
+                    form.querySelector('button[type="submit"]').style.display = 'none';
+                });
         }
         function editarEquipamento(id) {
             alert('Editar equipamento: ' + id);
@@ -175,7 +191,15 @@
         };
 
         function fecharModal() {
-            document.getElementById('modal-cadastrar').style.display = 'none';
+            const modal = document.getElementById('modal-cadastrar');
+            const form = document.getElementById('form-cadastrar');
+            modal.style.display = 'none';
+            // Reabilita todos os inputs
+            Array.from(form.elements).forEach(el => el.disabled = false);
+            // Mostra o botão de submit
+            form.querySelector('button[type="submit"]').style.display = '';
+            // Limpa o formulário
+            form.reset();
         }
 
         // Fecha o modal ao clicar fora dele
@@ -190,6 +214,9 @@
 
         document.getElementById('form-cadastrar').onsubmit = function (event) {
             event.preventDefault(); // Impede o reload da página
+
+            const tituloModal = document.getElementById('titulo-modal');
+            tituloModal.innerText = 'Cadastrar Equipamento';
 
             const form = event.target;
             const equipamento = {
